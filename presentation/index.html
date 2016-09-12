@@ -1,0 +1,672 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>FW/1 Subsystems 2.0</title>
+
+		<link rel="stylesheet" href="revealjs/css/reveal.css">
+		<link rel="stylesheet" href="revealjs/css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="revealjs/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'revealjs/css/print/pdf.css' : 'revealjs/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<style>
+			.shadow, h2.shadow {
+				text-shadow: 3px 2px 0px #f59, 5px 5px 0px rgba(0,0,0,0.15);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background="assets/module.jpg">
+					<h2 class="shadow">Going Modular With FW/1 Subsystems 2.0</h2>
+					<br/>
+					<p class="shadow">by<br/>Steven Neiland</p>
+				</section>
+
+				<section>
+					<section>
+						<h2>A highly opinionated presenation</h2>
+						<aside class="notes">
+							Im about 11 on the expert clock (which means midnight is coming soon)
+						</aside>
+					</section>
+
+					<section data-background="assets/code.jpg">
+						<h2>Code heavy</h2>
+						<p>We love code right</p>
+						<aside class="notes">
+							Sorry no lucee powered rasberry pii drones today
+						</aside>
+					</section>
+
+					<section>
+						<img data-src="assets/assumptions.jpg" style="margin-top:-50px" />
+						<aside class="notes">
+						 	Assume everyone has a basic understanding of how a FW/1 application is structured.
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Who is this guy?</h2>
+						<br/>
+						<p class="fragment">Senior Web Developer at Sitevision Inc.</p>
+						<p class="fragment">
+							Developing CF applications for 9 years<br/>
+							<small>(so hopefully he knows his stuff)</small>
+						</p>
+						<p class="fragment">
+							Guy behind the 2.0 spec
+						</p>
+						<p class="fragment">
+							<img data-src="assets/irish.jpg"/>
+						</p>
+						<aside class="notes">
+							Why should you listen to this guy.
+							<br/>Oh yeah he's Irish.
+						</aside>
+					</section>
+
+					<section>
+						<h2>Honorable Mention</h2>
+						<img data-src="assets/cfgothchic.jpg"/>
+						<p>Daria Norris</p>
+
+						<aside class="notes">
+						 	Reference Sitevision and Daria's work on modules.
+						</aside>
+					</section>
+
+					<section>
+						<h2>What we will cover</h2>
+						<p class="fragment">What are subsystems</p>
+						<p class="fragment">Why use subsystems</p>
+						<p class="fragment">1.0 vs 2.0 subsystems</p>
+						<p class="fragment">Basic Setup & Configuration</p>
+						<p class="fragment">Going Modular</p>
+						<p class="fragment">Limitations / Do's & Dont's</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>What are Subsystems?</h2>
+					</section>
+
+					<section>
+						<h2>History</h2>
+						<p>Added to FW/1 version 1.0 by <span class="fragment highlight-blue">Ryan Cogswell</span> in 2009</p>
+						<p class="fragment">
+							Originally billed as a way to <br/>
+						</p>
+						<blockquote  class="fragment">
+							"seamlessly integrate several FW/1 applications in adjacent directories"
+						</blockquote>
+						<aside class="notes">
+						 	Example given of adding an app to a FW/1 driven website.
+						</aside>
+					</section>
+
+					<section>
+						<h2>Why would I want to do that?</h2>
+
+						<img data-src="assets/huh.jpg"/>
+					</section>
+
+					<section>
+						<h2>Subsystems are not Plugins.</h2>
+
+						<p class="fragment">
+							<q><small>Subsystems are a way to expand on existing FW/1 applications which allows us to
+								add discreet workflows with minimal effort and configuration, by utilizing prepackaged
+								reusable FW/1 code .</small></q>
+						</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Why use them?</h2>
+						<p class="fragment">I'm a lazy developer (I hate Maintenance)
+						</p>
+
+						<aside class="notes">
+						 	A logical progression from functions to components to modules.
+						</aside>
+					</section>
+
+					<section>
+						<h2>Example: Login Form</h2>
+						<p>Something we all build into every app we make.</p>
+						<ol>
+							<li class="fragment">Username</li>
+							<li class="fragment">Password</li>
+							<li class="fragment">Forgot Password</li>
+							<li class="fragment">Change Password Period</li>
+							<li class="fragment">Register</li>
+							<li class="fragment">Analytics</li>
+							<li class="fragment">Maintenance Message</li>
+						</ol>
+						<p class="fragment">Wouldnt it be nice to give every app these features at once without copy pasting code?</p>
+					</section>
+
+					<section>
+						<!-- <p class="fragment">
+							<img data-src="assets/li-ching-yuen.jpg"/>
+							li-ching-yuen
+						</p> -->
+						<h2>Enter Subsystems</h2>
+						<h3>Code reuse is awesome</h3>
+					</section>
+
+					<section>
+						<h2>Potential Subsystems</h2>
+						<p class="fragment">Security / Account Management</p>
+						<p class="fragment">Calendars</p>
+						<p class="fragment">An image gallery</p>
+						<p class="fragment">Help system</p>
+						<p class="fragment">Data Import Tool</p>
+						<p class="fragment">etc. etc.</p>
+						<aside class="notes">
+						 	Any defined workflow that you can isolated from your core application
+						 	so that you have a single entry and exit point.
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Basic Setup</h2>
+					</section>
+
+					<section>
+						<h2>Structure of a subsystem</h2>
+						<p class="fragment">
+							A subsystem is structured identically to a normal FW/1 application with the following differences:
+						</p>
+						<br/>
+						<ol>
+							<li class="fragment">Subsystems do not have an Application.cfc file</li>
+							<li class="fragment">Subsystems cannot have subsystems</li>
+							<li class="fragment">Subsystem layouts cascade the same way but also include the core default layout by default</li>
+						</ol>
+						<br/>
+					</section>
+
+					<section>
+						<h2>Enabling Subsystems</h2>
+						<h3>The old way</h3>
+						<ol>
+							<li class="fragment">
+								Create two new directories "home" and "common" in your application root
+							</li>
+							<li class="fragment">
+								Inside "common" create a layouts directory and move your site wide layouts into it
+							</li>
+							<li class="fragment">
+								Move all other site directories "views", "model", "controllers" etc into the "home" directory
+							</li>
+							<li class="fragment">
+								Set variables.framework.usingSubsystems to true
+							</li>
+							<li class="fragment">
+								Finally create a new directory named for your subsystem and drop the code into it
+							</li>
+						</ol>
+						<aside class="notes">
+						 	Why are we talking about subsystems 2.0?
+						</aside>
+					</section>
+
+					<section>
+						<h2>Enabling Subsystems</h2>
+						<h3>The old way</h3>
+						<img data-src="assets/before.png"/>
+					</section>
+
+					<section>
+						<h2>Enabling Subsystems</h2>
+						<h3>The old way, It kinda sucked</h3>
+						<ul>
+							<li class="fragment">
+								It relegated the core of your application to the same level of a subsystem.
+							</li>
+							<li class="fragment">
+								Required you to move existing working code and make configuration changes (not completely convention based).
+							</li>
+							<li class="fragment">
+								Depending on your version control system you lost the history of your existing application files.
+							</li>
+							<li class="fragment">
+								Having two completely different ways to structure your application doesnt make any sense,
+								especially when talking about a conventions based framework.
+							</li>
+						</ul>
+						<aside class="notes">
+						 	These were the reasons I never bothered with subsystems when I first started learning FW/1
+						</aside>
+					</section>
+
+					<section>
+						<h2>Enabling Subsystems</h2>
+						<h3>The awesome 2.0 way</h3>
+						<p><small style="color:#5555ff">Added into FW/1 v3.5</small></p>
+						<ol>
+							<li class="fragment">
+								Create a directory "subsystems" in your application root.
+							</li>
+							<li class="fragment">
+								Copy your subsystem(s) into this directory
+							</li>
+						</ol>
+						<p class="fragment"><span class="fragment highlight-green">Yes thats it.</span></p>
+						<p class="fragment">Demo 1</p>
+						<p class="fragment">
+							Much of the following can also apply to 1.0 subsystem applications with modifications.
+						</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Configuration</h2>
+					</section>
+
+					<section>
+						<h2>Constants: Global</h2>
+						<p>FW/1 by default uses DI/1</p>
+						<pre class="fragment"><code data-trim data-noescape>
+// These constants are available to all subsystems
+variables.framework.diConfig : {
+	constants : {
+		dsn : "demo"
+	}
+}
+</code></pre>
+					</section>
+
+					<section>
+						<h2>Constants: Subsystem Specific</h2>
+						<p>We can override or expand for a named subsystem</p>
+						<pre class="fragment"><code data-trim data-noescape>
+// These constants are applied to the specific subsystem
+variables.framework.subsystems["subsystemname"] = {
+	diConfig = {
+		constants = {
+			dsn : "a_different_dsn"
+			, emailserver : "mx.myemailserver.com"
+		}
+	}
+}
+</code></pre>
+					</section>
+
+					<section>
+						<h2>setupSubsystem</h2>
+						<pre><code data-trim data-noescape>
+function setupSubsystem( subsystem ){
+    // your code here
+}
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Using Alternative Bean Factories Per Subsystem</h2>
+						<p>You can find this code on the FW/1 docs.</p>
+						<pre><code data-trim data-noescape>
+function setupSubsystem( subsystem ) {
+    var bf = createObject('component','coldspring.beans.DefaultXmlBeanFactory').init();
+    var bfConfigFilePath = subsystem & '/config/coldspring.xml.cfm';
+    // conditionally load the bean factory for this subsystem by convention:
+    if ( fileExists(expandPath('./') & bfConfigFilePath) ) {
+        bf.loadBeans( bfConfigFilePath );
+        setSubsystemBeanFactory( subsystem, bf );
+    }
+}
+						</code></pre>
+						<p class="fragment">It would be nice to be able to specify inside our subsystem.</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Helper Functions</h2>
+						<ol>
+							<li>getSubsystem()</li>
+							<li>getSection()</li>
+							<li>getItem()</li>
+							<li>getSectionAndItem()</li>
+							<li>getSubsystemSectionandItem()</li>
+							<li class="fragment">buildUrl() - Will handle relative addressing (always use it)</li>
+						</ol>
+					</section>
+
+					<section>
+						<h2>BuildUrl()</h2>
+						<p class="fragment">Create url relative from current location</p>
+						<pre class="fragment"><code data-trim data-noescape>
+							buildurl( 'section.item' )
+						</code></pre>
+						<p class="fragment">Create url to core applications section and item</p>
+						<pre class="fragment"><code data-trim data-noescape>
+							buildurl( ':section.item' ) // note the leading ':'
+						</code></pre>
+						<p class="fragment">Create url to specific subsystem section and item</p>
+						<pre class="fragment"><code data-trim data-noescape>
+							buildurl( 'subsystem:section.item' )
+						</code></pre>
+					</section>
+				</section>
+
+
+				<!--<section data-background="assets/but-wait-logo.jpg">
+				</section>-->
+
+				<section>
+					<h2>Advanced Subsystems: Going modular</h2>
+					<p class="fragment">
+						Subsystems by themselves are not modular. They merely give us a baseline set of
+						conventions and a starting point for integrating our code.
+					</p>
+
+					<!--<img data-src="assets/gettothecode.jpg" class="fragment">-->
+				</section>
+
+				<section>
+					<section>
+						<h2>Step 1: Include via Mappings</h2>
+						<ol>
+							<li class="fragment">Makes life easier when dealing with seperate code repos</li>
+							<li class="fragment">Keeps your code out of webroot.</li>
+						</ol>
+					</section>
+
+					<section>
+						<h2>Best way to setup</h2>
+						<p>This is totally up to you but..</p>
+						<p class="fragment">On ACF I would setup mappings in Application.cfc</p>
+						<p class="fragment">On Railo/Lucee in the "web" context of the administrator.</p>
+					</section>
+
+					<section>
+						<h2>Serving non cfml files</h2>
+						<p>Dont forget you might need to serve non cf files so remember to configure your webserver accordingly.</p>
+
+						<ul>
+							<li class="fragment">Windows - Create virtual directories</li>
+							<li class="fragment">Apache - Use Aliases</li>
+						</ul>
+						<pre class="fragment"><code data-trim data-noescape>
+						Alias /subsystems/calendar/assets "/path/to/calendar/assets"
+						</pre></code>
+					</section>
+
+					<section>
+						<h2>Version Control</h2>
+						<ul>
+							<li class="fragment">While a subsystem may be part of your project it should not be part of your projects repository.</li>
+							<li class="fragment">Tag stable releases and track which release number your projects use.</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h2>Demo 2</h2>
+					<p>Basic subsystem</p>
+				</section>
+
+				<section>
+					<h2>Sharing Data</h2>
+					<p>At some point your core application will need to talk to a subsystem or a vice versa.</p>
+					<p class="fragment">Indeed different subsystems may need to talk to each other.</p>
+					<ol>
+						<li class="fragment">URL/Form variables</li>
+						<li class="fragment">Session scope</li>
+						<li class="fragment">Database</li>
+						<li class="fragment">Other...?</li>
+					</ol>
+				</section>
+
+				<section>
+					<section data-background="assets/database.jpg">
+						<h2 style="color:#333333">The Database</h2>
+					</section>
+
+					<section>
+						<h2>Isolate when possible</h2>
+						<ul>
+							<li class="fragment">
+								When designing database component attempt to
+								isolate the tables of your subsystem from the rest of your application.
+							</li>
+							<li class="fragment">
+								The goal is to reduce impact of changes to an individual subsystem on the rest
+								of your applications database.
+							</li>
+							<li class="fragment">
+								This will not always be possible.
+							</li>
+							<li class="fragment">Keep subsystem specific sql scripts in the subsystems repo.</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Schema Naming Convention</h2>
+						<p class="fragment">
+							Reduce the risk of table name conflicts by using different
+							named schemas (on databases which support it).
+						</p>
+						<p class="fragment">
+							On databases which dont have the same concept of schema (MySQL/MariaDB)
+							establish a naming convention for subsystem tables.
+						</p>
+					</section>
+
+					<section>
+						<h2>Different Databases</h2>
+						<p class="fragment">
+							In some cases it will be possible and even desirable to stand up a seperate
+							database for a subsystem.
+						</p>
+						<p class="fragment">More to manage</p>
+						<p class="fragment">Allows you to distribute load</p>
+					</section>
+
+					<section>
+						<h2>Shared Databases</h2>
+						<p class="fragment">
+							If you isolate your subsystems database from the core application you can also
+							opt to share a subsystems db between applications.
+						</p>
+						<p class="fragment">Advantages, less to manage. </p>
+						<p class="fragment">Disadvantages single point of failure.</p>
+					</section>
+
+					<section>
+						<h2>Demo 3</h2>
+						<p>Help Subsystem</p>
+					</section>
+
+					<section>
+						<h2>Exception: Audit tables / keys</h2>
+						<p>
+							Do you need to join on the users table, would storing the username and id
+							on the record be sufficient?
+						</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Interfaces</h2>
+						<img data-src="assets/interface.jpg" />
+					</section>
+
+					<section>
+						<h2>Interface between Subsystems and Core</h2>
+						<blockquote  class="fragment">
+							"Interface: A shared boundary across which two separate components of a computer system exchange information"
+						</blockquote>
+					</section>
+
+					<section>
+						<h2>Access A Subsystems BeanFactory and Vice Versa</h2>
+						<pre class="fragment"><code data-trim data-noescape>
+							getSubsystemBeanFactory( subsystem )
+						</code></pre>
+
+						<pre class="fragment"><code data-trim data-noescape>
+							getDefaultBeanFactory()
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Demo 3 - cont</h2>
+						<p>Help Interface</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Interfaces Pt2</h2>
+						<p>Accessing and manipulating core data</h3>
+						<p>Demo 4 - Calendar</p>
+					</section>
+
+					<section>
+						<h2>Beans</h2>
+						<img data-src="assets/beanstalk.jpg" />
+					</section>
+
+					<section>
+						<h2>You can use subsystems more than once in the same application</h2>
+						<p>Huh?</p>
+					</section>
+				</section>
+
+				<section>
+					<h2>JS</h2>
+					<p>Straight forward. Namespace and append script includes to a rc scoped variable.</p>
+					<p>Use bower to manage library versions via the core application.</p>
+				</section>
+
+				<section>
+					<section><h2>CSS</h2></section>
+
+					<section>
+						<h2>Use a framework</h2>
+						<p>Home grown or third party it doesnt matter but you need one before you start.</p>
+						<p>Namespacing is your friend.</p>
+					</section>
+
+					<section>Detect subsystem in application interceptors to queue up customizations</section>
+				</section>
+
+				<section>
+					<section>Do's &amp; Don'ts</section>
+
+					<section>
+						<h2>Do</h2>
+						<ul>
+							<li class="fragment">
+								Keep subsystems limited to a single purpose
+							</li>
+							<li class="fragment">
+								Tag different version of your subsystems
+							</li>
+							<li class="fragment">
+								Limit the area of contact between your core application and individual subsystems
+							</li>
+							<li class="fragment">
+								Route interactions between subsystems through the core application
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Don't</h2>
+						<ul>
+							<li class="fragment">Try to make everything a subsystem</li>
+							<li class="fragment">introduce direct dependencies between subsystems</li>
+							<li class="fragment">Create god/common subsystems</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>God subsystems are bad</h2>
+						<p class="fragment">
+							It can be tempting to wrap commonly used files (layouts, components, libs)
+							into a god subsystem for the purpose of sharing between projects.
+						</p>
+						<p class="fragment">
+							<strong>Dont!</strong>
+						</p>
+						<p class="fragment">
+							Just because something looks like a subsystem does not make it a subsystems. Refer back to the subsystem definition.
+						</p>
+						<p class="fragment">
+							Nothing wrong with a common resources repository. Also cfinclude is not a dirty tag, you dont NEED to use "view()".
+						</p>
+					</section>
+				</section>
+
+				<section>
+					<h2>Limitations of Subsystems</h2>
+					<p class="fragment">
+						No subsystem global interceptors
+					</p>
+					<p class="fragment">
+						No defined subsystem setup/initialization feature
+					</p>
+					<p class="fragment">
+						FW/1 view function
+					</p>
+				</section>
+
+				<section>Questions ???</section>
+
+				<section>
+					<h2>Where to find me</h2>
+					<p>
+						Twitter: @sneiland<br/>
+						Web: www.neiland.net<br/>
+						Github: github.com/sneiland
+					</p>
+					<p>
+						<em>Examples and this presentation will be available on github.</em>
+					</p>
+				</section>
+			</div>
+		</div>
+
+		<script src="revealjs/lib/js/head.min.js"></script>
+		<script src="revealjs/js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'revealjs/plugin/notes/notes.js', async: true },
+					{ src: 'revealjs/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
