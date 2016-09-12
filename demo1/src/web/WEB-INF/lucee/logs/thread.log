@@ -1,0 +1,10 @@
+"Severity","ThreadID","Date","Time","Application","Message"
+"ERROR","cfthread-0","06/13/2016","13:22:19","","cfthread-0;Syntax Error, invalid Expression [Connection Failure];Syntax Error, invalid Expression [Connection Failure]
+	at lucee.runtime.interpreter.CFMLExpressionInterpreter.interpret(CFMLExpressionInterpreter.java:211):211
+	at lucee.runtime.functions.dynamicEvaluation.Evaluate._call(Evaluate.java:109):109
+	at lucee.runtime.functions.dynamicEvaluation.Evaluate.call(Evaluate.java:102):102
+	at lucee.runtime.functions.dynamicEvaluation.Evaluate.call(Evaluate.java:43):43
+	at admin.extension_functions_cfm460$cf.threadCall(/context/admin/extension.functions.cfm:142):142
+	at lucee.runtime.thread.ChildThreadImpl.execute(ChildThreadImpl.java:199):199
+	at lucee.runtime.thread.ChildThreadImpl.run(ChildThreadImpl.java:148):148
+"

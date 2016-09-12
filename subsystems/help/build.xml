@@ -1,0 +1,76 @@
+<project name="helpsubsystem" default="all" basedir=".">
+	
+	<description>
+		Build file for Windlass Help Subsystem
+	</description>
+
+	
+	<target name="init" description="Initializes the general settings and properties used in the build">
+		<!-- Timestamp the build -->
+		<tstamp>
+			<format property="buildtime" pattern="yyyy-MM-dd HH:mm:ss"/>
+		</tstamp>
+		<echo>Build Started at ${buildtime}</echo>
+		
+		<echo>Initializing build properties</echo>
+		
+		<!-- prefix to use for retrieving environment variables -->
+		<property environment="env" />
+		
+		<property file="build/build.properties" />
+		
+		<echo>All build properties have been initialized</echo>
+				
+		<!-- Include antcontrib task definitions -->
+		<taskdef resource="net/sf/antcontrib/antlib.xml"/>
+	</target>
+
+
+	<target name="all" depends="init,verifyServerRunning,deploy">
+		<echo>All tasks completed</echo>
+	</target>
+	
+	
+	<target name="verifyServerRunning" description="Verifies that we can connect to the target server">
+		<fail message="No server running at ${server.ipaddress}:${server.port}">
+			<condition>
+				<not>
+					<socket port="${server.port}" server="${server.ipaddress}" />
+				</not>
+			</condition>
+		</fail>
+		<echo>Server at ${server.ipaddress}:${server.port} is running</echo> 
+	</target>
+	
+	
+	<target name="deploy">
+		<echo>Starting deploy using RSync</echo>
+		
+		<exec dir="." executable="rsync" failonerror="true">
+			<!--- all, compressed, verbose, recursive, omit-dir-times -->
+			<arg value="-azuvrO" />
+			
+			<!-- Exclude subverions files -->
+			<arg value="--exclude=.svn" />
+			
+			<!-- Exclude hidden files and directories -->
+			<arg value="--exclude='.*'" />
+			
+			<!-- Use ssh with a private key -->
+			<arg value="-e"/>
+			<arg value="ssh -p 5022"/>
+			
+			<!-- Source directory -->
+			<arg value="${env.WORKSPACE}/src/"/>
+			
+			<!-- Destination directory on remote server -->
+			<arg value="${server.username}@${server.ipaddress}:${server.destdir}"/>
+			
+			<!-- Verbose -->
+			<arg value="-v"/>
+		</exec>
+			
+		<echo>Finished RSync deploy</echo>
+	</target>
+
+</project>

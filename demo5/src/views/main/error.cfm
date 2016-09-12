@@ -1,0 +1,1 @@
+<cfinclude template="/common/views/error.cfm">

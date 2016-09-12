@@ -1,0 +1,24 @@
+<VirtualHost *:80>
+    ServerName demo.localhost
+    DocumentRoot D:/apache2/htdocs/demo/src/web
+
+  #  Alias /mxunit "D:/apache2/htdocs/mxunit"
+  #  Alias /tests "D:/apache2/htdocs/coldsql/coldsqlcrm/tests"
+  #  Alias /srcjs "D:/apache2/htdocs/coldsql/coldsqlcrm/src/assets/js"
+
+	Alias /common "D:/apache2/htdocs/coldsql/common/"
+
+    #Subsystem mappings
+    Alias /subsystems/calendar/assets "D:/apache2/htdocs/coldsql/subsystems/calendar/src/assets"
+    Alias /subsystems/help/assets "D:/apache2/htdocs/coldsql/subsystems/help/src/assets"
+    Alias /subsystems/security/assets "D:/apache2/htdocs/coldsql/subsystems/tenants/src/assets"
+
+    ErrorLog "logs/demo-error.log"
+    CustomLog "logs/demo-access.log" common
+
+    ProxyPreserveHost On
+    ProxyPassReverse / ajp://localhost:8009/
+
+    RewriteEngine On
+    RewriteRule ^/(.*\.cf[cm])$ ajp://localhost:8009/$1 [P]
+</VirtualHost>

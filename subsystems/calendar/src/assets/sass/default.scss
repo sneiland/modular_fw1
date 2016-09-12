@@ -1,0 +1,37 @@
+.calendar {
+  width: 100%;
+}
+
+.calendar th,.calendar td {
+  padding: 5px;
+}
+
+.calendar td { 
+  height: 50px;
+}
+	
+.calendar th {
+  background-color: #003366;
+  color: #ddd;
+}
+
+.calendar td {
+  background-color: #ebf4fb;
+  color: #333;
+  font-weight: bold;
+}
+
+.calendar td.borderingMonth {
+  background-color: #336699; 
+  font-weight: normal;
+}
+
+.calevent {
+	background-color: #ffffff;
+	padding: 2px;
+	margin-bottom: 2px;
+}
+
+.calevent a {
+  text-decoration:none;
+}
