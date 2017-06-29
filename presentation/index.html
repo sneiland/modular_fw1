@@ -32,6 +32,7 @@
 			<div class="slides">
 				<section data-background="assets/module.jpg">
 					<h2 class="shadow">Going Modular With FW/1 Subsystems 2.0</h2>
+					<p class="shadow">(Updated)</p>
 					<br/>
 					<p class="shadow">by<br/>Steven Neiland</p>
 				</section>
@@ -66,7 +67,7 @@
 						<br/>
 						<p class="fragment">Senior Web Developer at Sitevision Inc.</p>
 						<p class="fragment">
-							Developing CF applications for 9 years<br/>
+							Developing CF applications for 10 years<br/>
 							<small>(so hopefully he knows his stuff)</small>
 						</p>
 						<p class="fragment">
@@ -200,8 +201,8 @@
 						</p>
 						<br/>
 						<ol>
-							<li class="fragment">Subsystems do not have an Application.cfc file</li>
-							<li class="fragment">Subsystems cannot have subsystems</li>
+							<li class="fragment">Subsystems do not have an Application.cfc file <i>(yet)</i></li>
+							<li class="fragment">Subsystems cannot be nested</li>
 							<li class="fragment">Subsystem layouts cascade the same way but also include the core default layout by default</li>
 						</ol>
 						<br/>
@@ -273,11 +274,12 @@
 								Copy your subsystem(s) into this directory
 							</li>
 						</ol>
-						<p class="fragment"><span class="fragment highlight-green">Yes thats it.</span></p>
-						<p class="fragment">Demo 1</p>
-						<p class="fragment">
-							Much of the following can also apply to 1.0 subsystem applications with modifications.
-						</p>
+						<p class="fragment"><span style="color:#00ff00">Yes thats it.</span></p>
+					</section>
+					
+					<section>
+						<h2>Demo 1</h2>
+						<p>Much of the following can also apply to 1.0 subsystem applications with modifications.</p>
 					</section>
 				</section>
 
@@ -322,6 +324,7 @@ function setupSubsystem( subsystem ){
     // your code here
 }
 						</code></pre>
+						<aside class="notes">We use this to go modular.</aside>
 					</section>
 
 					<section>
@@ -338,7 +341,7 @@ function setupSubsystem( subsystem ) {
     }
 }
 						</code></pre>
-						<p class="fragment">It would be nice to be able to specify inside our subsystem.</p>
+						<aside class="notes">It would be nice to be able to do this inside our subsystem.</aside>
 					</section>
 				</section>
 
@@ -390,7 +393,7 @@ function setupSubsystem( subsystem ) {
 					<section>
 						<h2>Step 1: Include via Mappings</h2>
 						<ol>
-							<li class="fragment">Makes life easier when dealing with seperate code repos</li>
+							<li class="fragment">Makes life easier when dealing with separate code repos</li>
 							<li class="fragment">Keeps your code out of webroot.</li>
 						</ol>
 					</section>
@@ -479,21 +482,26 @@ function setupSubsystem( subsystem ) {
 					<section>
 						<h2>Different Databases</h2>
 						<p class="fragment">
-							In some cases it will be possible and even desirable to stand up a seperate
+							In some cases it will be possible and even desirable to stand up a separate
 							database for a subsystem.
 						</p>
 						<p class="fragment">More to manage</p>
 						<p class="fragment">Allows you to distribute load</p>
+						<p class="fragment">Different Database Types...NoSQL anyone</p>
 					</section>
 
-					<section>
-						<h2>Shared Databases</h2>
-						<p class="fragment">
+					<section data-background="assets/share.jpg">
+						<h2 style="color:black">Shared Databases</h2>
+						<p class="fragment" style="color:black;background-color:white;">
 							If you isolate your subsystems database from the core application you can also
 							opt to share a subsystems db between applications.
 						</p>
-						<p class="fragment">Advantages, less to manage. </p>
-						<p class="fragment">Disadvantages single point of failure.</p>
+						<p class="fragment" style="color:black;background-color:white;">
+							Advantages, less to manage.
+						</p>
+						<p class="fragment" style="color:black;background-color:white;">
+							Disadvantages single point of failure.
+						</p>
 					</section>
 
 					<section>
@@ -502,7 +510,7 @@ function setupSubsystem( subsystem ) {
 					</section>
 
 					<section>
-						<h2>Exception: Audit tables / keys</h2>
+						<h2>Audit tables / keys</h2>
 						<p>
 							Do you need to join on the users table, would storing the username and id
 							on the record be sufficient?
