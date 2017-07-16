@@ -1,1 +1,7 @@
 /.project
+**/WEB-INF
+demo5/src/web/WEB-INF
+demo4/src/web/WEB-INF
+demo3/src/web/WEB-INF
+demo2/src/web/WEB-INF
+demo1/src/web/WEB-INF

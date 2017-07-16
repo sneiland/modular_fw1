@@ -38,8 +38,7 @@
 				</section>
 
 				<section>
-					<section>
-						<h2>A highly opinionated presenation</h2>
+					<section data-background="assets/caution_highly_opinionated.jpg" style="margin:50px">
 						<aside class="notes">
 							Im about 11 on the expert clock (which means midnight is coming soon)
 						</aside>
@@ -126,6 +125,10 @@
 						<h2>Why would I want to do that?</h2>
 
 						<img data-src="assets/huh.jpg"/>
+						
+						<aside class="notes">
+						 	Answer, you wouldn't. I've yet to come across this scenario in the wild.
+						</aside>
 					</section>
 
 					<section>
@@ -136,17 +139,25 @@
 								add discreet workflows with minimal effort and configuration, by utilizing prepackaged
 								reusable FW/1 code .</small></q>
 						</p>
+
+						<aside class="notes">
+						 	A logical progression from functions to components to modules.
+						</aside>
 					</section>
 				</section>
 
 				<section>
 					<section>
 						<h2>Why use them?</h2>
-						<p class="fragment">I'm a lazy developer (I hate Maintenance)
+						<p class="fragment">Reuse workflows between different applications
 						</p>
-
+						<p class="fragment">Reduce time to delivery of new applications
+						</p>
+						<p class="fragment">Reduce work to fix bugs in code shared between applications
+						</p>
+						
 						<aside class="notes">
-						 	A logical progression from functions to components to modules.
+						 	I'm a lazy developer
 						</aside>
 					</section>
 
@@ -165,13 +176,13 @@
 						<p class="fragment">Wouldnt it be nice to give every app these features at once without copy pasting code?</p>
 					</section>
 
-					<section>
+					<section data-background="assets/recycle.jpg">
 						<!-- <p class="fragment">
 							<img data-src="assets/li-ching-yuen.jpg"/>
 							li-ching-yuen
 						</p> -->
-						<h2>Enter Subsystems</h2>
-						<h3>Code reuse is awesome</h3>
+						<h2 style="color:black">Enter Subsystems</h2>
+						<aside class="notes">Code reuse is awesome</aside>
 					</section>
 
 					<section>
@@ -190,14 +201,14 @@
 				</section>
 
 				<section>
-					<section>
-						<h2>Basic Setup</h2>
+					<section data-background="assets/setup.png">
+						<h2 style="background-color:black;">Basic Setup</h2>
 					</section>
 
 					<section>
 						<h2>Structure of a subsystem</h2>
 						<p class="fragment">
-							A subsystem is structured identically to a normal FW/1 application with the following differences:
+							A subsystem is structured identically to a normal FW/1 application with the following key differences:
 						</p>
 						<br/>
 						<ol>
@@ -206,6 +217,10 @@
 							<li class="fragment">Subsystem layouts cascade the same way but also include the core default layout by default</li>
 						</ol>
 						<br/>
+						<aside class="notes">
+						 	FW/1 5.0 currently plans to rework the lifecycle to allow for a subsystem.cfc 
+						 	which would include before/after/setup type functions.
+						</aside>
 					</section>
 
 					<section>
@@ -274,7 +289,7 @@
 								Copy your subsystem(s) into this directory
 							</li>
 						</ol>
-						<p class="fragment"><span style="color:#00ff00">Yes thats it.</span></p>
+						<aside class="notes">Yes thats it.</aside>
 					</section>
 					
 					<section>
@@ -318,13 +333,13 @@ variables.framework.subsystems["subsystemname"] = {
 					</section>
 
 					<section>
-						<h2>setupSubsystem</h2>
+						<h2>setupSubsystem()</h2>
 						<pre><code data-trim data-noescape>
 function setupSubsystem( subsystem ){
     // your code here
 }
 						</code></pre>
-						<aside class="notes">We use this to go modular.</aside>
+						<aside class="notes">This is a built in FW/1 function we leverage to go modular.</aside>
 					</section>
 
 					<section>
@@ -374,10 +389,6 @@ function setupSubsystem( subsystem ) {
 						</code></pre>
 					</section>
 				</section>
-
-
-				<!--<section data-background="assets/but-wait-logo.jpg">
-				</section>-->
 
 				<section>
 					<h2>Advanced Subsystems: Going modular</h2>
@@ -430,6 +441,9 @@ function setupSubsystem( subsystem ) {
 				<section>
 					<h2>Demo 2</h2>
 					<p>Basic subsystem</p>
+				</section>		
+
+				<section data-background="assets/but-wait-logo.jpg">
 				</section>
 
 				<section>
