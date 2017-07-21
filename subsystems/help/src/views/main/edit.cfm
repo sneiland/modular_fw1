@@ -1,6 +1,6 @@
 <cfoutput>
 	<form name="helpForm" id="helpForm">
-		<input type="hidden" name="pageId" id="pageId" value="#rc.helpData.pageId#">
+		<input type="hidden" name="Id" id="Id" value="#rc.helpData.Id#">
 		<input type="hidden" name="modal" value="#rc.modal#">
 		<input type="text" name="title" id="title" value="#rc.helpData.title#">
 		<input type="hidden" name="helpAction" id="helpAction" value="#rc.helpAction#">

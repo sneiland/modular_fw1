@@ -138,7 +138,7 @@ component accessors="true" extends="framework.one" {
 
 	private function queueSubsystemCSS( subsystem, rc ){
 		var defaultwebpath = variables.framework.base & "subsystems/" & arguments.subsystem & "/assets/css/default.css";
-		var defaultsystempath = expandpath( "/subsystems/#arguments.subsystem#/assets/css/default.css" );
+		var defaultsystempath = expandpath( "/subsystems/#arguments.subsystem#/web/assets/css/default.css" );
 
 		queueSubsystemCssFile( arguments.subsystem, defaultsystempath, defaultwebpath, variables.csschecks.defaultsfound, variables.csschecks.defaultsnotfound, rc );
 	}

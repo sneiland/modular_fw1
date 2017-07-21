@@ -1,17 +1,21 @@
 ss_help.modal = (function(){
+	
+	var hasEditPermission = false;
+	
 	function init(){
 		return {
+			setEditPermission: setEditPermission,
 			showHelpDialog: showHelpDialog
 		};
 	}
 	
 	function loadEditHelpDialog( helpaction ){
-		var url = '/index.cfm?action=help:main.edit';
+		//var url = '/index.cfm?action=help:main.edit';
 		$('#dialog-help').dialog('close');
 	
 		$.ajax({
 			type: 'POST',
-			url: url,
+			url: ss_help.modal.editurl,
 			data: {
 				helpaction: helpaction
 				, modal: true
@@ -20,6 +24,10 @@ ss_help.modal = (function(){
 				showEditHelpDialog( helpaction, data );
 			}
 		});
+	}
+	
+	function setEditPermission( val ){
+		hasEditPermission = val;
 	}
 	
 	function showEditHelpDialog( helpaction, data ){
@@ -63,6 +71,34 @@ ss_help.modal = (function(){
 		
 	
 	function showHelpDialog( helpaction ){
+		var buttons = [];
+		
+		if( hasEditPermission ){
+			buttons = [
+				{
+					text: 'Close',
+	            	click: function(){
+	            		$(this).dialog('close');
+	            	}
+				},
+				{
+	            	text: 'Edit',
+	            	click: function(){
+	            		loadEditHelpDialog(helpaction);
+	            	}
+				}
+        	];
+		} else {
+			buttons = [
+				{
+					text: 'Close',
+	            	click: function(){
+	            		$(this).dialog('close');
+	            	}
+				}
+        	];
+		}
+		
 		$.ajax({
 			type: 'POST',
 			url: '/index.cfm?action=help:main.modal',
@@ -72,20 +108,7 @@ ss_help.modal = (function(){
 					height: '600',
 					width: '650',
 					modal:true,
-					buttons: [
-						{
-							text: 'Close',
-			            	click: function(){
-			            		$(this).dialog('close');
-			            	}
-						},
-						{
-			            	text: 'Edit',
-			            	click: function(){
-			            		loadEditHelpDialog(helpaction);
-			            	}
-						}
-		        	],
+					buttons: buttons,
 		        	open: function (){
 			            $(this).html(data);
 			        },

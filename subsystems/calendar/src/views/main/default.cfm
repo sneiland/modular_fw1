@@ -5,7 +5,7 @@
 				<!--- <div class="col-xs-12 col-lg-3">
 					<div class="form-group">
 						<label for="filterView">View :</label>
-						<select name="filterView" id="filterView" class="form-control c-select">
+						<select name="filterView" id="filterView" class="form-control custom-select">
 							<option value="month"> Month </option>
 							<option value="week"> Week </option>
 							<option value="day"> Day </option>
@@ -16,7 +16,7 @@
 				<div class="col-xs-12 col-lg-3">
 					<div class="form-group">
 						<label for="filterMonth">Month :</label>
-						<select name="filterMonth" id="filterMonth" class="form-control c-select">
+						<select name="filterMonth" id="filterMonth" class="form-control custom-select">
 
 							<cfloop from="1" to="12" index="local.monthNumber">
 								<option value="#local.monthNumber#" <cfif local.monthNumber EQ rc.selectedMonth>selected="true"</cfif>>#monthAsString(local.monthNumber)#</option>
@@ -35,7 +35,7 @@
 				<div class="col-xs-12 col-lg-3">
 					<div class="form-group">
 						<label for="filterType">Type :</label>
-						<select name="filterType" id="filterType" class="form-control c-select">
+						<select name="filterType" id="filterType" class="form-control custom-select">
 							<option value=""> -All- </option>
 							<cfloop array="#rc.itemTypes#" index="local.i" item="local.itemType">
 								<option value="#local.itemType.value#">#local.itemType.name#</option>
@@ -57,5 +57,5 @@
 		jsrequest.edit = '#buildUrl( action="main.edit" )#';
 		jsrequest.save = '#buildUrl( action="main.save" )#';
 	</script>
-	<script src="/subsystems/#getSubsystem()#/assets/js/views/main_default.js?refresh=#application.refreshTimestamp#"></script>
+	<script src="/subsystems/#getSubsystem()#/assets/js/views/main/default.js?refresh=#application.refreshTimestamp#"></script>
 </cfoutput>

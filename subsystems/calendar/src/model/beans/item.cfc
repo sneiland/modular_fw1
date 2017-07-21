@@ -1,45 +1,23 @@
-component accessors="true" {
+interface {
 
-	property name="id";
-	property name="startdatetime";
-	property name="enddatetime";
-	property name="label";
-	property name="description";
 
-	property name="type";
-	property name="itemObject";
+	public string function getStartDate(){}
 
-	public function init(){
-		return this;
-	}
+	public string function getStartTime(){}
 
-	public function getStartDate(){
-		return DateFormat(getStartDatetime(), "yyyy-mm-dd");
-	}
+	public string function getEndDate(){}
 
-	public function getStartTime(){
-		return TimeFormat(getStartDatetime(), "H:mm");
-	}
+	public string function getEndTime(){}
 
-	public function getEndDate(){
-		return DateFormat(getEndDatetime(), "yyyy-mm-dd");
-	}
+	public string function getType(){}
 
-	public function getEndTime(){
-		return TimeFormat(getEndDatetime(), "H:mm");
-	}
+	public string function getStartDateFormatted(){}
 
-	public string function getStartDateFormatted(){
-		return dateFormat(getStartDate(),"short");
-	}
+	public string function getEndDateFormatted(){}
 
-	public string function getEndDateFormatted(){
-		return dateFormat(getEndDate(),"short");
-	}
-
-	public boolean function updateData( vars ){
+	/*public boolean function updateData( vars ){
 		setType( arguments.vars.type );
 		return getItemObject().updateData(vars);
-	}
+	}*/
 
 }

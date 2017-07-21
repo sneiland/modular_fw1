@@ -32,9 +32,9 @@ component accessors="true" extends="common.model.services.subsystem" {
 	}
 
 
-	public function updateHelpPage( pageId, title, pageContent, helpAction ){
+	public function updateHelpPage( Id, title, pageContent, helpAction ){
 		return getHelpGateway().updateHelpPage(
-			pageId = arguments.pageId
+			Id = arguments.Id
 			, title = arguments.title
 			, pageContent = arguments.pageContent
 			, helpAction = arguments.helpAction

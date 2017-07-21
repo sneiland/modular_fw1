@@ -1,29 +1,40 @@
 .calendar {
-  width: 100%;
+	width: 100%;
 }
 
 .calendar th,.calendar td {
-  padding: 5px;
+	padding: 5px;
+	border: 1px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #333333;
+}
+
+.calendar th {
+	background-color: #003366;
+	color: #ddd;
+	border-right-color: #dddddd;
+	border-bottom-color: #dddddd;
+}
+
+.calendar th .button {
+	color: #000;
 }
 
 .calendar td { 
-  height: 50px;
-}
-	
-.calendar th {
-  background-color: #003366;
-  color: #ddd;
+ 	height: 50px;
 }
 
 .calendar td {
-  background-color: #ebf4fb;
-  color: #333;
-  font-weight: bold;
+	background-color: #ebf4fb;
+	color: #333;
+	font-weight: bold;
 }
 
 .calendar td.borderingMonth {
-  background-color: #336699; 
-  font-weight: normal;
+	background-color: #336699; 
+	font-weight: normal;
+	color:#eee;
 }
 
 .calevent {
@@ -33,5 +44,9 @@
 }
 
 .calevent a {
-  text-decoration:none;
+	text-decoration:none;
+}
+
+.calItem:hover {
+	cursor: pointer;
 }

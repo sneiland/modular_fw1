@@ -23,7 +23,7 @@
 
 		<cfquery name="qryGetApplicationId" datasource="#getDSN()#">
 			SELECT
-				applicationId
+				Id
 			FROM
 				applications
 			WHERE
@@ -33,7 +33,7 @@
 		<cfif NOT qryGetApplicationId.recordCount>
 			<cfset returnId = createNewApplication( arguments.applicationname )>
 		<cfelse>
-			<cfset returnId = qryGetApplicationId.applicationId>
+			<cfset returnId = qryGetApplicationId.Id>
 		</cfif>
 
     	<cfreturn returnId>
@@ -48,9 +48,9 @@
 
 		<cfquery name="qryGetHelpPageByAction" datasource="#getDSN()#">
 			SELECT
-				pageId
-				,title
-				,pageContent
+				Id
+				, title
+				, pageContent
 			FROM
 				pages
 			WHERE
@@ -72,7 +72,7 @@
 
 		<cfquery name="qryGetHelpPagesForList" datasource="#getDSN()#">
 			SELECT
-				  p1.pageId
+				  p1.Id
 				, p1.title
 				, p1.pageContent
 				, p1.helpAction
@@ -94,7 +94,7 @@
 
 	<cffunction name="updateHelpPage" access="public" output="false" returntype="numeric">
 		<cfargument name="helpAction" type="string" required="true" default="">
-		<cfargument name="pageId" type="numeric" required="true" default="0">
+		<cfargument name="Id" type="numeric" required="true" default="0">
 		<cfargument name="title" type="string" required="false" default="">
 		<cfargument name="pageContent" type="string" required="false" default="">
 		<cfargument name="applicationId" required="yes" type="numeric">
@@ -102,7 +102,7 @@
 		<cfset var qryUpdateHelpPage = "">
 		<cfset var qryAddHelpPage = "">
 
-		<cfif arguments.pageId EQ 0>
+		<cfif arguments.Id EQ 0>
 			<cfquery name="qryAddHelpPage" datasource="#getDSN()#">
 				INSERT INTO pages (
 					title
@@ -125,7 +125,7 @@
 					, pageContent = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.pageContent#">
 					, helpAction = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.helpAction#">
 				WHERE
-					pageId = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.pageId#">
+					Id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.Id#">
 			</cfquery>
 		</cfif>
 
