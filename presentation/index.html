@@ -32,13 +32,13 @@
 			<div class="slides">
 				<section data-background="assets/module.jpg">
 					<h2 class="shadow">Going Modular With FW/1 Subsystems 2.0</h2>
+					<p class="shadow">(Updated)</p>
 					<br/>
 					<p class="shadow">by<br/>Steven Neiland</p>
 				</section>
 
 				<section>
-					<section>
-						<h2>A highly opinionated presenation</h2>
+					<section data-background="assets/caution_highly_opinionated.jpg" style="margin:50px">
 						<aside class="notes">
 							Im about 11 on the expert clock (which means midnight is coming soon)
 						</aside>
@@ -66,7 +66,7 @@
 						<br/>
 						<p class="fragment">Senior Web Developer at Sitevision Inc.</p>
 						<p class="fragment">
-							Developing CF applications for 9 years<br/>
+							Developing CF applications for 10 years<br/>
 							<small>(so hopefully he knows his stuff)</small>
 						</p>
 						<p class="fragment">
@@ -125,6 +125,10 @@
 						<h2>Why would I want to do that?</h2>
 
 						<img data-src="assets/huh.jpg"/>
+						
+						<aside class="notes">
+						 	Answer, you wouldn't. I've yet to come across this scenario in the wild.
+						</aside>
 					</section>
 
 					<section>
@@ -135,17 +139,25 @@
 								add discreet workflows with minimal effort and configuration, by utilizing prepackaged
 								reusable FW/1 code .</small></q>
 						</p>
+
+						<aside class="notes">
+						 	A logical progression from functions to components to modules.
+						</aside>
 					</section>
 				</section>
 
 				<section>
 					<section>
 						<h2>Why use them?</h2>
-						<p class="fragment">I'm a lazy developer (I hate Maintenance)
+						<p class="fragment">Reuse workflows between different applications
 						</p>
-
+						<p class="fragment">Reduce time to delivery of new applications
+						</p>
+						<p class="fragment">Reduce work to fix bugs in code shared between applications
+						</p>
+						
 						<aside class="notes">
-						 	A logical progression from functions to components to modules.
+						 	I'm a lazy developer
 						</aside>
 					</section>
 
@@ -164,13 +176,13 @@
 						<p class="fragment">Wouldnt it be nice to give every app these features at once without copy pasting code?</p>
 					</section>
 
-					<section>
+					<section data-background="assets/recycle.jpg">
 						<!-- <p class="fragment">
 							<img data-src="assets/li-ching-yuen.jpg"/>
 							li-ching-yuen
 						</p> -->
-						<h2>Enter Subsystems</h2>
-						<h3>Code reuse is awesome</h3>
+						<h2 style="color:black">Enter Subsystems</h2>
+						<aside class="notes">Code reuse is awesome</aside>
 					</section>
 
 					<section>
@@ -189,22 +201,26 @@
 				</section>
 
 				<section>
-					<section>
-						<h2>Basic Setup</h2>
+					<section data-background="assets/setup.png">
+						<h2 style="background-color:black;">Basic Setup</h2>
 					</section>
 
 					<section>
 						<h2>Structure of a subsystem</h2>
 						<p class="fragment">
-							A subsystem is structured identically to a normal FW/1 application with the following differences:
+							A subsystem is structured identically to a normal FW/1 application with the following key differences:
 						</p>
 						<br/>
 						<ol>
-							<li class="fragment">Subsystems do not have an Application.cfc file</li>
-							<li class="fragment">Subsystems cannot have subsystems</li>
+							<li class="fragment">Subsystems do not have an Application.cfc file <i>(yet)</i></li>
+							<li class="fragment">Subsystems cannot be nested</li>
 							<li class="fragment">Subsystem layouts cascade the same way but also include the core default layout by default</li>
 						</ol>
 						<br/>
+						<aside class="notes">
+						 	FW/1 5.0 currently plans to rework the lifecycle to allow for a subsystem.cfc 
+						 	which would include before/after/setup type functions.
+						</aside>
 					</section>
 
 					<section>
@@ -273,11 +289,12 @@
 								Copy your subsystem(s) into this directory
 							</li>
 						</ol>
-						<p class="fragment"><span class="fragment highlight-green">Yes thats it.</span></p>
-						<p class="fragment">Demo 1</p>
-						<p class="fragment">
-							Much of the following can also apply to 1.0 subsystem applications with modifications.
-						</p>
+						<aside class="notes">Yes thats it.</aside>
+					</section>
+					
+					<section>
+						<h2>Demo 1</h2>
+						<p>Much of the following can also apply to 1.0 subsystem applications with modifications.</p>
 					</section>
 				</section>
 
@@ -316,12 +333,13 @@ variables.framework.subsystems["subsystemname"] = {
 					</section>
 
 					<section>
-						<h2>setupSubsystem</h2>
+						<h2>setupSubsystem()</h2>
 						<pre><code data-trim data-noescape>
 function setupSubsystem( subsystem ){
     // your code here
 }
 						</code></pre>
+						<aside class="notes">This is a built in FW/1 function we leverage to go modular.</aside>
 					</section>
 
 					<section>
@@ -338,7 +356,7 @@ function setupSubsystem( subsystem ) {
     }
 }
 						</code></pre>
-						<p class="fragment">It would be nice to be able to specify inside our subsystem.</p>
+						<aside class="notes">It would be nice to be able to do this inside our subsystem.</aside>
 					</section>
 				</section>
 
@@ -372,10 +390,6 @@ function setupSubsystem( subsystem ) {
 					</section>
 				</section>
 
-
-				<!--<section data-background="assets/but-wait-logo.jpg">
-				</section>-->
-
 				<section>
 					<h2>Advanced Subsystems: Going modular</h2>
 					<p class="fragment">
@@ -390,7 +404,7 @@ function setupSubsystem( subsystem ) {
 					<section>
 						<h2>Step 1: Include via Mappings</h2>
 						<ol>
-							<li class="fragment">Makes life easier when dealing with seperate code repos</li>
+							<li class="fragment">Makes life easier when dealing with separate code repos</li>
 							<li class="fragment">Keeps your code out of webroot.</li>
 						</ol>
 					</section>
@@ -427,6 +441,9 @@ function setupSubsystem( subsystem ) {
 				<section>
 					<h2>Demo 2</h2>
 					<p>Basic subsystem</p>
+				</section>		
+
+				<section data-background="assets/but-wait-logo.jpg">
 				</section>
 
 				<section>
@@ -479,21 +496,26 @@ function setupSubsystem( subsystem ) {
 					<section>
 						<h2>Different Databases</h2>
 						<p class="fragment">
-							In some cases it will be possible and even desirable to stand up a seperate
+							In some cases it will be possible and even desirable to stand up a separate
 							database for a subsystem.
 						</p>
 						<p class="fragment">More to manage</p>
 						<p class="fragment">Allows you to distribute load</p>
+						<p class="fragment">Different Database Types...NoSQL anyone</p>
 					</section>
 
-					<section>
-						<h2>Shared Databases</h2>
-						<p class="fragment">
+					<section data-background="assets/share.jpg">
+						<h2 style="color:black">Shared Databases</h2>
+						<p class="fragment" style="color:black;background-color:white;">
 							If you isolate your subsystems database from the core application you can also
 							opt to share a subsystems db between applications.
 						</p>
-						<p class="fragment">Advantages, less to manage. </p>
-						<p class="fragment">Disadvantages single point of failure.</p>
+						<p class="fragment" style="color:black;background-color:white;">
+							Advantages, less to manage.
+						</p>
+						<p class="fragment" style="color:black;background-color:white;">
+							Disadvantages single point of failure.
+						</p>
 					</section>
 
 					<section>
@@ -502,7 +524,7 @@ function setupSubsystem( subsystem ) {
 					</section>
 
 					<section>
-						<h2>Exception: Audit tables / keys</h2>
+						<h2>Audit tables / keys</h2>
 						<p>
 							Do you need to join on the users table, would storing the username and id
 							on the record be sufficient?
@@ -559,21 +581,41 @@ function setupSubsystem( subsystem ) {
 				</section>
 
 				<section>
-					<h2>JS</h2>
-					<p>Straight forward. Namespace and append script includes to a rc scoped variable.</p>
-					<p>Use bower to manage library versions via the core application.</p>
-				</section>
-
-				<section>
-					<section><h2>CSS</h2></section>
+					<section><h2>UI Components</h2></section>
 
 					<section>
-						<h2>Use a framework</h2>
+						<h2>JS</h2>
+						<p>Straight forward. Namespace and append script includes to a rc scoped variable.</p>
+						<p>Use bower to manage library versions via the core application.</p>
+					</section>
+				
+					<section>
+						<h2>CSS</h2>
+						<p>Use a framework</p>
 						<p>Home grown or third party it doesnt matter but you need one before you start.</p>
 						<p>Namespacing is your friend.</p>
 					</section>
 
-					<section>Detect subsystem in application interceptors to queue up customizations</section>
+					<section>
+						<p>Detect subsystem in application interceptors to queue up customizations</p>
+						<p class="fragment">Demo 5</p>
+					</section>
+
+					<section>
+						<h2>Custom Tags</h2>
+					</section>
+					
+					<section data-background="assets/woman_screaming.jpg"></section>
+					
+					<section>
+						<h2>Custom Tags</h2>
+						<p>Just because they are old tech doesnt mean they don't have uses.</p>
+						<p class="fragment">Conditionally load dependencies</p>
+						<p class="fragment">Allow for different version of code in different applications</p>
+						<p class="fragment">Use in conjunction with HTTP2</p>
+					</section>
+
+					<section>Demo: Custom tags in use</section>
 				</section>
 
 				<section>

@@ -32,14 +32,14 @@ component accessors="true" {
 		// Populate struct with existing data if any
 		if( helpDataQry.recordcount ){
 			rc.helpData = {
-				pageId:helpDataQry.pageId,
+				Id:helpDataQry.Id,
 				title:helpDataQry.title,
 				pageContent:helpDataQry.pageContent
 			};
 		} else {
 			// Populate helpData Struct with new defaults
 			rc.helpData = {
-				pageId:0,
+				Id:0,
 				title:"",
 				pageContent:""
 			};
@@ -49,7 +49,7 @@ component accessors="true" {
 
 	public void function save(rc){
 		var saveSuccess = getHelpService().updateHelpPage(
-			pageId = rc.pageId
+			Id = rc.Id
 			,title = rc.title
 			,pageContent = rc.pageContent
 			,helpAction = rc.helpaction
@@ -59,6 +59,7 @@ component accessors="true" {
 
 
 	public void function modal(rc){
+		rc.hasEditPermission = getHelpService().hasEditPermission();
 		rc.getHelpPage = getHelpService().getHelpPageByAction(helpAction=rc.helpaction);
 		rc.helpaction = listfirst(rc.helpaction,"?");
 		variables.fw.setLayout('modal');
@@ -66,6 +67,6 @@ component accessors="true" {
 
 
 	public void function view(rc){
-		rc.getHelpPage = getHelpService().getHelpPageById(pageId=rc.pageId);
+		rc.getHelpPage = getHelpService().getHelpPageById(Id=rc.Id);
 	}
 }

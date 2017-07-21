@@ -22,15 +22,9 @@ component accessors="true" extends="common.model.subsysteminterface" implements=
 			var calls = getCallsService().getCallsBetweenDates( startdate=startdate, enddate=enddate );
 
 			for( var call in calls ){
-				var item = bf.getBean('item');
-
-				item.setStartDatetime( call.datetimeStart );
-				item.setEndDatetime( call.datetimeStart );
-				item.setLabel( call.subject );
-				item.setDescription( call.description );
-				item.setId( call.callId );
+				var item = getCoreBeanFactory().getBean('calendaritem');
 				item.setType( 'call' );
-
+				item.setitemObject( call );
 				returnArray.append(item);
 			}
 		}

@@ -1,9 +1,11 @@
-component accessors="true" extends="subsystems.calendar.model.beans.item" {
+component accessors="true" implements="subsystems.calendar.model.beans.item" {
 
-	property name="type";
+	property name="type" default="";
 	property name="itemObject";
+	property name="fw";
 
-	function init(){
+	public component function init( fw ){
+		variables.fw = arguments.fw;
 		return this;
 	}
 
@@ -20,15 +22,31 @@ component accessors="true" extends="subsystems.calendar.model.beans.item" {
 		return getItemObject().getDescription();
 	}
 
+	public string function getEndDate(){
+		var enddate = "";
+		if( getType() == "call"){
+			enddate = getItemObject().getEndDate();
+		}
+		return enddate;
+	}
+
+	public string function getEndTime(){
+		var endtime = "";
+		if( getType() == "call"){
+			endtime = getItemObject().getEndTime();
+		}
+		return endtime;
+	}
+
 	public function setId( id ){
 		if( getType() == "call"){
-			getItemObject().setCallId( arguments.id );
+			getItemObject().setId( arguments.id );
 		}
 	}
 
 	public function getId(){
 		if( getType() == "call"){
-			return getItemObject().getCallId();
+			return getItemObject().getId();
 		}
 	}
 
@@ -50,9 +68,61 @@ component accessors="true" extends="subsystems.calendar.model.beans.item" {
 		}
 	}
 
-	public function getStartDate(){
+	public string function getStartDate(){
+		var returnval = "";
 		if( getType() == "call"){
-			return getItemObject().getStartDate();
+			returnval = getItemObject().getStartDate();
+		}
+		return returnval;
+	}
+
+	public string function getStartDateFormatted(){
+		var returnval = "";
+		if( getType() == "call"){
+			returnval = getItemObject().getStartDateFormatted();
+		}
+		return returnval;
+	}
+
+	public string function getEndDateFormatted(){
+		var returnval = "";
+		if( getType() == "call"){
+			returnval = getItemObject().getEndDateFormatted();
+		}
+		return returnval;
+	}
+
+
+	public string function getStartTime(){
+		var startTime = "";
+
+		if( getType() == "call"){
+			startTime = getItemObject().getStartTime();
+		}
+
+		return startTime;
+	}
+
+	public string function getType(){
+		return variables.type;
+	}
+
+
+	public void function setStartDatetime( startdatetime ){
+		if( getType() == "call"){
+			getItemObject().setStartDatetime(startdatetime);
+		}
+	}
+
+	public void function setEndDatetime( enddatetime ){
+		if( getType() == "call"){
+			getItemObject().setEndDatetime(enddatetime);
+		}
+	}
+
+	public void function setDescription( description ){
+		if( getType() == "call"){
+			getItemObject().setDescription(description);
 		}
 	}
 
@@ -65,15 +135,11 @@ component accessors="true" extends="subsystems.calendar.model.beans.item" {
 		//setEndDate( arguments.vars.enddate );
 		//setEndTime( arguments.vars.enddate );
 		setDescription( arguments.vars.description );
-		getItemObject().save();
 
+		if( getType() == "call" ){
+			getItemObject().save( vars );
+		}
 		return true;
-	}
-
-
-	public function onMissingMethod(missingMethodName,missingMethodArguments){
-		var gw = getItemObject();
-		return invoke(gw,missingMethodName,missingMethodArguments);
 	}
 
 }

@@ -38,7 +38,7 @@
 		<ul class="helpList">
 			<cfloop query="rc.helpPagesList">
 				<li>
-					<h2><a href="#buildUrl(action="main.view",querystring="pageId=#rc.helpPagesList.pageId#")#"">#rc.helpPagesList.title#</a></h2>
+					<h2><a href="#buildUrl(action="main.view",querystring="Id=#rc.helpPagesList.Id#")#"">#rc.helpPagesList.title#</a></h2>
 					<p>#left(REReplaceNoCase(rc.helpPagesList.pageContent, "<[\/]?[^>]*>","","ALL"),250)# <a href="##" onclick="javascript:showHelpDialog('#rc.helpPagesList.helpAction#')">more...</a></p>
 				</li>
 			</cfloop>

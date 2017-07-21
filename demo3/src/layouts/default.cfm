@@ -98,10 +98,8 @@
 
 	<cfoutput>#view("help:main/fragments/modalcontainers")#</cfoutput>
 	<script>
-		var ss_help = {};
-	</script>
-	<script src="/subsystems/help/assets/js/modal.js?refresh=#application.refreshTimestamp#"></script>
-	<script>
+		ss_help.modal.setEditPermission( true );
+
 		$('#collapsingNavbar')
 			.on(
 				'click',

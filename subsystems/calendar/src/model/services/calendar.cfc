@@ -41,7 +41,7 @@ component accessors="true" extends="common.model.services.subsystem" {
 	}
 
 	public any function getItem(type="",id=0){
-		return getCoreService().getItem(type=arguments.type,id=arguments.id);
+		return getCoreService().getItem( type=arguments.type, id=arguments.id );
 	}
 
 	public array function getItems(startdate,enddate,types=""){
@@ -154,7 +154,6 @@ component accessors="true" extends="common.model.services.subsystem" {
 		var returnArray = [];
 
 		for(var calweek in arguments.calarray){
-
 			for(var i=1; i<=7; i++){
 				var todaysItems = [];
 
