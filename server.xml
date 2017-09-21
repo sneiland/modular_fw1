@@ -1,0 +1,19 @@
+<Host name="demo1.localhost" appBase="webapps">
+             <Context path="" docBase="D:\htdocs\modular_fw1\demo1\src\web" />
+        </Host>
+
+	<Host name="demo2.localhost" appBase="webapps">
+             <Context path="" docBase="D:\htdocs\modular_fw1\demo2\src\web" />
+        </Host>
+
+	<Host name="demo3.localhost" appBase="webapps">
+             <Context path="" docBase="D:\htdocs\modular_fw1\demo3\src\web" />
+        </Host>
+
+	<Host name="demo4.localhost" appBase="webapps">
+             <Context path="" docBase="D:\htdocs\modular_fw1\demo4\src\web" />
+        </Host>
+
+	<Host name="demo5.localhost" appBase="webapps">
+             <Context path="" docBase="D:\htdocs\modular_fw1\demo5\src\web" />
+        </Host>

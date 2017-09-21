@@ -19,7 +19,7 @@ USE `help`;
 -- Dumping structure for table help.applications
 DROP TABLE IF EXISTS `applications`;
 CREATE TABLE IF NOT EXISTS `applications` (
-  `applicationID` int(11) NOT NULL AUTO_INCREMENT,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`applicationID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -30,14 +30,14 @@ CREATE TABLE IF NOT EXISTS `applications` (
 -- Dumping structure for table help.pages
 DROP TABLE IF EXISTS `pages`;
 CREATE TABLE IF NOT EXISTS `pages` (
-  `pageId` int(11) NOT NULL AUTO_INCREMENT,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
   `helpAction` varchar(50) NOT NULL,
   `title` varchar(50) NOT NULL,
   `pageContent` text NOT NULL,
   `applicationId` int(11) NOT NULL,
   PRIMARY KEY (`pageId`),
   KEY `FK_pages_applications` (`applicationId`),
-  CONSTRAINT `FK_pages_applications` FOREIGN KEY (`applicationId`) REFERENCES `applications` (`applicationID`)
+  CONSTRAINT `FK_pages_applications` FOREIGN KEY (`applicationId`) REFERENCES `applications` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
